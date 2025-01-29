@@ -26,8 +26,6 @@ public class CssSelectors {
         divElements.click(); //click
 
 
-
-
        // driver.quit();//close browser
     }
     private void hideBanner(){  // убрать баннер, чт не закрывал элементы
