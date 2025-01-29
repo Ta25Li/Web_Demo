@@ -16,7 +16,7 @@ public class Exceptions {
     private static void uncheckedExceptions(String []strArray){
         try {
             for (int i = 0; i < 5; i++) {
-                System.out.println(strArray[i]);
+                System.out.println(strArray[i]); 
             }
         }catch (ArrayIndexOutOfBoundsException e){
         e.printStackTrace();
