@@ -11,8 +11,8 @@ public class CssSelectors {
     WebDriver driver = new ChromeDriver();
 
     @Test
-    public void selectorsHomePage(){
-        driver.get ("https://demoqa.com/");
+    public void selectorsHomePage() {
+        driver.get("https://demoqa.com/");
         driver.manage().window().maximize(); // so that site opens to full screen
         hideBanner();
         hideFooter();
@@ -25,14 +25,65 @@ public class CssSelectors {
                 (By.cssSelector("div[class='avatar mx-auto white']")); // find element
         divElements.click(); //click
 
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
-       // driver.quit();//close browser
+        driver.quit();//close browser
     }
-    private void hideBanner(){  // убрать баннер, чт не закрывал элементы
+
+    @Test
+    public void selectorsElementsPage() {
+        driver.get("https://demoqa.com/elements");
+        driver.manage().window().maximize();
+        hideBanner();
+
+        WebElement textBox = driver.findElement(By.id("item-0"));
+        System.out.println(textBox.getAttribute("class"));
+
+        WebElement checkBox = driver.findElement(By.cssSelector("li[id='item-1']"));
+        checkBox.click();
+
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        driver.quit();
+    }
+        @Test
+        public void selectorsRadioButtonPage(){
+            driver.get("https://demoqa.com/radio-button");
+            driver.manage().window().maximize();
+            hideBanner();
+            hideFooter();
+
+          //  WebElement radioButtonYes = driver.findElement(By.cssSelector("label[for ='yesRadio']"));
+           WebElement radioButtonYes = driver.findElement(By.xpath("//label[@for ='yesRadio']"));
+            radioButtonYes.click();
+
+
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            driver.quit();
+        }
+
+
+
+    private void hideBanner() {  // убрать баннер, чт не закрывал элементы
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector('#fixedban').style.display='none'");
     }
-    private void hideFooter(){
+
+    private void hideFooter() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector('footer').style.display='none'");
     }
