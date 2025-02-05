@@ -64,8 +64,9 @@ public class CssSelectors {
 
           //  WebElement radioButtonYes = driver.findElement(By.cssSelector("label[for ='yesRadio']"));
            WebElement radioButtonYes = driver.findElement(By.xpath("//label[@for ='yesRadio']"));
-            radioButtonYes.click();
 
+        //WebElement radioButtonYes1 = driver.findElement(By.xpath("//input[@id='yesRadio']")); // точка не активна, ее не найти
+            radioButtonYes.click();
 
             try {
                 Thread.sleep(4000);
