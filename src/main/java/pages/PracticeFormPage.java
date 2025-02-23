@@ -44,6 +44,19 @@ public class PracticeFormPage extends BasePage {
     @FindBy(xpath = "//input[@id='subjectsInput']")
     WebElement fieldSubject;
 
+    @FindBy(id="react-select-3-input")
+    WebElement inputState;
+
+    @FindBy(id="react-select-4-input")
+    WebElement inputCity;
+
+    @FindBy(css = "button[id='submit']")
+    WebElement btnSubmit;
+
+    @FindBy (id="example-modal-sizes-title-lg")
+    WebElement modalMessage;
+
+
     //=====================================
     public void typePracticeForm(Student student) {
         hideBanner();
@@ -59,7 +72,24 @@ public class PracticeFormPage extends BasePage {
         typeSubjects(student.getSubject());
         typeHobbies(student.getHobbies());
         fieldAddress.sendKeys(student.getAddress());
+        typeStateCity(student.getState(),student.getCity());
+        btnSubmit.click();
     }
+
+public boolean validateModalMessage(){
+        return validateTextInElement(modalMessage,
+                "Thanks for submitting the form");
+}
+
+
+private void typeStateCity(String state, String city){
+   inputState.sendKeys(state);
+   inputState.sendKeys(Keys.ENTER);
+
+   inputCity.sendKeys(city);
+   inputCity.sendKeys(Keys.ENTER);
+}
+
 
     private void typeDateOfBirth(String dateOfBirth) {
         filedDateOfBirth.click();
@@ -91,13 +121,13 @@ public class PracticeFormPage extends BasePage {
     private void typeHobbies(List<Hobbies> hobbies){
         for(Hobbies h: hobbies){
             switch (h){
-                case MUSIC :
+                case MUSIC:
                     driver.findElement(By.xpath(h.getLocator())).click();
                     break;
                 case SPORTS:
                     driver.findElement(By.xpath(h.getLocator())).click();
                     break;
-                case READING: :
+                case READING:
                     driver.findElement(By.xpath(h.getLocator())).click();
                     break;
 
