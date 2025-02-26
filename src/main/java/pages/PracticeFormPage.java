@@ -81,6 +81,11 @@ public boolean validateModalMessage(){
                 "Thanks for submitting the form");
 }
 
+    public boolean validateModalMessageNegative(){
+        return validateTextInElement(modalMessage,
+                "Negative");
+    }
+
 
 private void typeStateCity(String state, String city){
    inputState.sendKeys(state);
